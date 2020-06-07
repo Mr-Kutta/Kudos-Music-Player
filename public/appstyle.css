@@ -1,0 +1,92 @@
+
+
+/* CSS for Music Player - Starts */ 
+
+.audio-player .cover img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 30px;
+  padding: 10px; background-color: rgba(0, 0, 0, 0.945);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.audio-player .title {
+  padding: 0;
+  margin-top: 2.5rem;
+  font-weight: 800;
+  font-size: 28px;
+}
+
+
+.audio-player #play-btn:hover {
+  cursor: pointer;
+  color: #000000;
+}
+
+.wrapper i.fa {
+  padding: 15px;
+}
+ .wrapper:hover i.fa {
+  color: #ffffff;
+  font-size: 120%;
+}
+
+.volumeControl .outer {
+  border-radius: 2px;
+  box-shadow: -2px 3px 4px rgba(0, 0, 0, 0.23);
+  overflow: hidden;
+  height: 0.3rem;
+  flex-basis: 80%;
+  margin-left: 0%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+}
+.volumeControl .outer .inner {
+  background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+  width: 100%;
+  display: inline-block;
+  height: 100%;
+}
+
+.volumeControl .outer:hover {
+  cursor: pointer;
+}
+.title{
+  color: whitesmoke;
+}
+.start-time,
+.end-time {
+  font-size: 14px;
+  font-weight: 800;
+  font-family: 'Nunito', sans-serif;
+  transition: 1s ease-in-out;
+  line-height: 0;
+  color: whitesmoke;
+}
+
+.start-time {
+  float: left;
+  position: relative;
+  left: 2;
+}
+
+.end-time {
+  float: right;
+  position: relative;
+  right: 2;
+}
+
+.action {
+  margin: 1rem auto;
+  text-align: left;
+}
+
+.action span {
+  font-size: 14px;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* CSS for Music Player - Ends */ 

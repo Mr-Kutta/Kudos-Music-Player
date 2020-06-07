@@ -1,0 +1,1484 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Kudos Music Player</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/ico" href="img/kmp_icon.png" />
+  <link rel="stylesheet" type="text/css" href="appstyle.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+  html {
+  scroll-behavior: smooth;
+  }
+  body{
+    background-image: linear-gradient(rgb(39, 36, 36),rgb(39, 36, 36),rgb(39, 36, 36));
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+  }
+  #mainpage h1{
+      font-size: 200%;
+      color: whitesmoke;
+      margin-top: 0%;
+      text-align: center;
+      letter-spacing: 1px;
+  }
+  #mainpage h2{
+      font-size: 130%;
+      color:whitesmoke;
+      text-align: center;
+      letter-spacing: 1px;
+  }
+  .listen {
+      width: 50%;
+      font-family: 'Nunito', sans-serif;
+      font-size: 120%;
+      padding: 12px;
+      cursor: pointer;
+      border: none;
+      color: rgb(26, 24, 24);
+      background-color: rgba(252, 252, 252, 0.87);
+      border-radius: 25px;
+      margin-top: 10%;
+  }
+  .mobile-site {display: none;}
+  .web-site {
+      position: fixed;
+      left: 0;
+      color: yellow;
+      width: 100%;
+      display: block;}
+
+  @media screen and (max-width: 768px) {
+
+  .web-site {display: none;}
+  .mobile-site {display: block;}
+  }
+  #myVideo {
+    width: 105%;
+    margin-left: -2%;
+  }
+  p {
+    text-align: center;
+    color: #acacac;
+  }span{
+    color: tomato;
+  }
+
+/* CSS for Nav Menu - Starts */ 
+  fieldset{
+    border: none;
+  }
+  .pure-group input{
+    width: 90%;
+    padding: 8px;
+    margin-left: 4.5%;
+    background-color: rgb(26, 24, 24);
+    border: none;
+    color: whitesmoke;
+    font-family: 'Nunito', sans-serif;
+  }
+  textarea{
+    width: 90%;
+    padding: 8px;
+    margin-left: 4.5%;
+    background-color: rgb(26, 24, 24);
+    border: none;
+    color: whitesmoke;
+    font-family: 'Nunito', sans-serif;
+  }
+  .sidepanel button{
+      width: 35%;
+      font-family: 'Nunito', sans-serif;
+      font-size: 105%;
+      padding: 5px;
+      cursor: pointer;
+      border: none;
+      color: rgb(39, 36, 36);
+      background-color: tomato;
+  }
+  .sidepanel h1{
+      font-size: 150%;
+      color: rgb(39, 36, 36);
+      margin-top: 10%;
+      text-align: center;
+  }
+  .sidepanel {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  .sidepanel a {
+    text-decoration: none;
+    font-size: 25px;
+    color: rgb(39, 36, 36);
+    display: block;
+    transition: 0.3s;
+  }
+  .sidepanel a:hover {
+    color: rgb(156, 156, 156);
+  }
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+  .sidepanel img{
+    position:relative;
+    width: 100%;
+  }
+  .followme{
+    width: 50%;
+  }
+  .followme img{
+    width: 50%;
+    text-align: center;
+  }
+  .openbtn{
+    color: whitesmoke;
+    font-size: 140%;
+    padding: 20px;
+    cursor: pointer;
+  }
+
+/* CSS for Nav Menu - Ends */ 
+
+#kmp {
+  display: none;
+}
+
+/* CSS for footer - Starts */ 
+  footer {
+  background-image: linear-gradient(whitesmoke,rgba(245, 245, 245, 0.89), rgba(245, 245, 245, 0.808),rgba(39, 36, 36, 0.904));
+  height:3.5%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  border-radius: 50%/100px 150px 0 0;
+  }
+  .footer img{
+    width: 16.5%;
+    position: fixed;
+    left: 42%;
+    bottom:1%;
+  }
+  box-icon {
+  width: 45px !important;
+  height: 30px !important;
+  cursor: pointer;
+  }
+/* CSS for footer - Ends */ 
+/*List */
+#latest_list{
+  display: none;
+}
+.latest_list {
+  background-color: rgb(39, 36, 36);
+  height:30%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: white;
+  }
+  .latest_list nav{
+    padding: 25px;
+    position: fixed;
+  }
+  .latest_list button{
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(216, 127, 127);
+    font-family: 'Nunito', sans-serif;
+    font-size: 105%;
+  }
+  .latest_list h1,h2,h3{
+    color:whitesmoke;
+    letter-spacing: 1px;
+  }
+  .latest_list h1{
+    font-size: 160%;
+  }
+  .latest_list h2{
+    font-size: 140%;
+  }
+  #love_list{
+  display: none;
+}
+.love_list {
+  background-color: rgb(39, 36, 36);
+  height:30%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: white;
+  }
+  .love_list nav{
+    padding: 25px;
+    position: fixed;
+  }
+  .love_list button{
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(209, 127, 216);
+    font-family: 'Nunito', sans-serif;
+    font-size: 105%;
+  }
+  .love_list h1,h2,h3{
+    color:whitesmoke;
+    letter-spacing: 1px;
+  }
+  .love_list h1{
+    font-size: 160%;
+  }
+  .love_list h2{
+    font-size: 140%;
+  }
+  #devo_list{
+  display: none;
+}
+.devo_list {
+  background-color: rgb(39, 36, 36);
+  height:30%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: white;
+  }
+  .devo_list nav{
+    padding: 25px;
+    position: fixed;
+  }
+  .devo_list button{
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(103, 145, 199);
+    font-family: 'Nunito', sans-serif;
+    font-size: 105%;
+  }
+  .devo_list h1,h2,h3{
+    color:whitesmoke;
+    letter-spacing: 1px;
+  }
+  .devo_list h1{
+    font-size: 160%;
+  }
+  .devo_list h2{
+    font-size: 140%;
+  }
+  span{
+    color: tomato;
+  }
+
+/* End of list*/
+
+#slideshow img{
+  width: 100%;
+}
+#slideshow > div {
+  position: absolute;
+}
+
+.ctrl{
+  width: 120px !important;
+  height: 35px !important;
+  font-size: 130%;
+  color: #252424;
+  display: flex;
+  justify-content: space-between;
+}
+.ctrl span{
+  width: 20%;
+  height: 100%;
+  padding: 10px;
+}
+.ctrl_btn{
+  color: #252424;
+  font-size: 120%;
+}
+
+.controller {
+  background-color: rgba(245, 245, 245, 0.863);
+  height:27%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.audio-player #play-btn{
+  color: #252424;
+  font-size: 120%;
+  padding: 5px 4px;
+
+}
+
+</style>
+
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.3.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.3.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.3.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.3.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.3.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.3.0/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.3.0/firebase-analytics.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="/__/firebase/6.4.0/firebase-app.js"></script>
+    <script src="/__/firebase/6.4.0/firebase-auth.js"></script>
+    <script src="/__/firebase/6.4.0/firebase-storage.js"></script>
+    <script src="/__/firebase/6.4.0/firebase-messaging.js"></script>
+    <script src="/__/firebase/6.4.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/6.4.0/firebase-performance.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+</head>
+
+<body>
+  <div class="mobile-site">
+<!--Start of the Nav Menu-->
+<div id="menubar">
+    <div id="mySidepanel"  class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <img src="img/Dev banner.jpg">
+        <h1><span style="color: tomato;">Don't be a Stranger</span> just say hello.</h1>
+        <form class="gform pure-form pure-form-stacked" method="POST" data-email="example@email.net"
+              action="https://script.google.com/macros/s/AKfycby0ls7_bOO1Aj9QG7vlh4WnkZ8NNmcOTyrW5xET/exec">
+                <!-- change the form action to your script url -->
+            <div class="enquiry">
+                <div class="form-elements">
+                  <fieldset class="pure-group">
+                    <input id="name" name="name" placeholder="Name" />
+                  </fieldset>
+    
+                  <fieldset class="pure-group">
+                    <input id="email" name="email" type="email" value=""
+                    required placeholder="Email"/>
+                    <span class="email-invalid" style="display:none">
+                    Must be a valid email address</span>
+                  </fieldset>
+    
+                  <fieldset class="pure-group"> 
+                    <textarea id="message" name="message" rows="10"
+                    placeholder="Message"></textarea>
+                  </fieldset>
+            
+                  <center><button>Send Over</button></center>
+                </div><br>
+            </div>
+            <!-- Customise the Thankyou Message People See when they submit the form: -->
+            <div class="thankyou_message" style="display:none; height: 100%;">
+              <center><h3>Thanks for contacting us! We will get back to you soon!</h3></center>
+            </div>  
+        </form><br>
+        <p style="bottom: 0; font-size: 70%; color: #818181;">Copyrights © 2020. All rights reserved. Hari Gowtham. C</p>
+        <center><table class="followme">
+          <tr>
+            <th>
+              <a href="mailto:harigowtham.c@gmail.com"><img src="img/gmail.png"></a>
+            </th>
+            <th>
+              <a href="https://tinyurl.com/kudos2-o"><img src="img/Google Assistant.png"></a>
+            </th>
+            <th>
+              <a href="https://www.instagram.com/mr.kutta/"><img src="img/Instagram.png"></a>
+            </th>
+          </tr>
+        </table></center>
+    </div>
+    <table>
+      <tr>
+        <th style=" padding: 17px 5px;"><a class="openbtn" onclick="openNav()">  <i class="fa fa-bars" aria-hidden="true"></i> </a></th>
+      </tr>
+    </table>
+</div>
+<!--End of the Nav Menu--> 
+
+<!-- Home Page Starts -->
+<section class="w3-center w3-animate-left" id="mainpage">
+    <center><img id="wel" style="width: 80px; height: 80px; margin-top: -5%;" src="img/KMP Logo.png"></center>
+    <h1>K<span>u</span>dos <span>M</span>usic Pl<span>a</span>yer</h1>
+    <h2>Music is Medicine</h2>
+    <center><button onClick="document.getElementById('music').scrollIntoView();" class="listen">Listen to Music</button></center>
+    <br><br><br>
+    <div id="slideshow">
+      <div>
+        <img src="img/Latest banner.jpg">
+      </div>
+      <div>
+        <img src="img/Romantic banner.jpg">
+      </div>
+      <div>
+        <img src="img/Devo Banner.jpg">
+      </div>
+   </div>
+    <br><br>
+    <br><br><br>
+    <br><br><br>
+    <br>
+   <section class="homepage">
+            <div id="start" class="container">
+            
+                    <div id="music" class="content">
+                        <h2>Latest Tamil 2020</h2>
+                        <a onclick="l_list()">
+                          <video autoplay muted loop id="myVideo">
+                            <source src="latest_video.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                          </video>
+                        </a>
+                        <p>Music, art concerned with combining vocal or instrumental sounds for beauty of form or emotional expression.</p>
+                    </div>
+                    <br>
+                    <div id="music" class="content">
+                      <h2>Romantic Songs 2020</h2>
+                      <a onclick="r_list()">
+                        <video autoplay muted loop id="myVideo">
+                          <source src="Romantic_video.mp4" type="video/mp4">
+                          Your browser does not support HTML5 video.
+                        </video>
+                      </a>
+                      <p>Music is a protean art; it lends itself easily to alliances with words, as in song, and with physical movement, as in dance.</p>
+                  </div>
+                  <br>
+                  <div id="music" class="content">
+                    <h2>Devotional Songs</h2>
+                    <a onclick="d_list()">
+                      <video autoplay muted loop id="myVideo">
+                        <source src="Devo_video.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                      </video>
+                    </a>
+                    <p>Music is composed and performed for many purposes, ranging from aesthetic pleasure, religious or ceremonial purposes, or as an entertainment product for the marketplace.</p>
+                </div>
+        
+              <br><br>
+            </div>
+      </section>
+</section>
+<!-- Home Page Ends -->
+
+<!--KMP-Lastest-->
+      <section class="w3-center w3-animate-left" id="kmp">
+        <main class="content">
+          <div class="content_inner">
+            <body>
+                <div class="audio-player" id="skin">
+                    <div class="holder">
+                      <center><img style="width: 70%; margin-top: -7%; " class="rotateimg180" src="img/illu2.png"></center>
+                      <br>
+                      <div class="audio-wrapper" id="player-container" href="javascript:;">
+                        <audio id="player" preload="metadata" onloadedmetadata="mDur()" ontimeupdate="initProgressBar()">
+                          <source src="" type="audio/mp3">
+                        </audio>
+                      </div>
+                      <div class="player-controls scrubber">
+                        <div>
+                          <div>
+                            <p style="font-size:130%; margin-top: -3%; " class="title"></p>
+                          </div>
+                          <div class="range">
+                            <input id="dur" type="range" class="range" name="rng" min="0" max="1" step="0.00000001" value="0" onchange="mSet()" style="width: 98%; border-radius: 50px;">
+                          </div>
+                          <br>
+                          <span class="time start-time"></span>
+                          <span class="time end-time"></span>
+                          <br><br><br><br>
+                          <br><br><br><br>
+                          <div class="controller">
+                              <div class="volumeControl">
+                                  <div class="wrapper">
+                                    <span class="outer">
+                                      <span class="inner"></span>
+                                    </span>
+                                    <center><i class="fa fa-volume-up"></i></center>
+                                  </div>
+                              </div>
+                              <center><div class="ctrl">
+                              <a href="#prev" class="ctrl_btn " id="prev"><i class="fa fa-arrow-left" ></i></a>
+                              <span id="play-btn" class="fa fa-play"></span>
+                              <a href="#next" class="ctrl_btn " id="next"><i class="fa fa-arrow-right" ></i></a>
+                              </div></center>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                </div>
+            </body> 
+          </div>
+        </main>
+      </section>
+<!--KMP-Lastest-->
+
+<!--Latest Song List-->
+
+<section class="w3-center w3-animate-top" class="list" id="latest_list">
+  <div class="latest_list">
+    <nav onclick="home()">
+      <i class="fa fa-chevron-left" style="font-size:24px; color: whitesmoke;"></i>
+    </nav><br><br><br>
+      <table style="text-align:left; width: 105%; left: -2%; position: fixed;">
+        <tr>
+          <th>
+            <img src="img/Latest banner.jpg" style="width: 100%;">
+          </th>
+        </tr>
+        <tr>
+          <th style="text-align: center;">
+            <button onclick="javascript: $.getScript('scripts/latest_songs.js' , function (){ kmp_player() ; } );">Play Music <i class="fa fa-headphones" aria-hidden="true"></i></button>
+          </th>
+        </tr>
+      </table>
+  </div>    
+      <br><br>
+    <div>
+      <table style="text-align: left; margin-top: 58%;">
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/adi_aathi.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Adi Aathi</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">D Imman - Naan Thaan Siva</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/adi_aathi.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Yedho Yedho Aasai</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">D Imman - Naan Thaan Siva</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/vaathi.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Vaathi Coming</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Vathi Coming (from Master)</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kanave nee.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kanave Nee Naan</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sooraj Santhosh - kannum Kannum Kollaiyadithaal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kaadhal psycho.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kadhal Psycho - Groovedev Remix</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Kadhal Psycho - Groovedev Remix</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/marappathilai.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Marappadhilai Nenje-Additional Song</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Leon James - Oh My Kadavule</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/antha kanna.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Andha Kanna Paathaakaa</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Master</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/dharala Prabhu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Dharala Prabhu Title Track</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - From "Dharala Prabhu"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kutty story.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kutti Story</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Kutti Story-From "Master"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Adithya Varma.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Yaen Ennai Pirindhaai</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sid Sriram - Adithya Varma</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Una nenachu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Unna Nenachu (From "Psycho (Tamil)")</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Ilaiyaraaja - Unna Nenachu-From "Psycho (Tamil)"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/break up.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Breakup Song</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Hiphop Tamizha - Naan Sirithal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/sikkalam parakkalam.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Sirikkalam Parakkalam</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Madurai Soulijos - Kannum Kannum Kollaiyadithaal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/chill bro.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Chill Bro</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Dhanush - Chill Bro</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/odavu mudiyathu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Odavum Mudiyadhu Oliyavum Mudiyadhu</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Kaushik Krish - Odavum Mudiyadhu Oliyavum Mudiyadhu</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/what are you talking.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">What Are You Talking Lady?</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anthony Daasan - Vairii</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/poorenu .jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Porenu Nee Pona</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Teejay Arunasalam - Anbulla Ghilli</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kalaigirathe.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kalaigiradhey Kanave</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Govind Vasantha - From "Pon Magal Vandhal"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/marandhaye.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Marandhaye</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Pradeep Kumar - Teddy</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/veyyon.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Veyyon Silli</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">GV Prakash Kumar - Veyyon Silli</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kadaipoma.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kadhaippoma (From "Oh My Kadavule")</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Leon James - From "Oh My Kadavule"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/fake love.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Fake Love</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Rk Arvin - Fake Love (Single)</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/sathiyama.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Sathiyama</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Mugen Rao - Sathiyama (Single)</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/ennai vittu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Ennai Vittu</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Ranjith - Kannum Kannum Kollaiyadithaal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/mannurunda.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Mannurunda</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">GV Prakash Kumar - Mannurunda</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/sikkalam parakkalam.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Yelo Pullelo</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Kannum Kannum Kollaiyadithaal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kutty story.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Quit Pannuda</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Master</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/ajukku.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Ajukku Gumukku</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Hiphop Tamizha - Naan Sirithal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Una nenachu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Neenga Mudiyuma</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Ilaiyaraaja - From "Psycho (Tamil)"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/gaandu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Gaandu Acoustic</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Vijay Immanuel - Gaandu (Acoustic)</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/lityanandha.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Lityananda</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">ADK - Lityananda</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kutty story.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Pona Pogattum</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Master</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/lovvu .jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Lovvu Lovvu</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Yuvan Shankar Raja - Anbulla Ghilli</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/ennoda va.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Ennodu Va</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Yuvan Shankar Raja - From "Plan Panni Pannanum"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kannane.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kannana Kanne</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Aalap Raju - God Father</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/unnale penne.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Unnaal Penne</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Inno Genga - From "Dharala Prabhu"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/en iniya thanimaiye.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">En Iniya Thanimaye</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sid Sriram - Teddy</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/vaan thooralgal.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Vaan Thooralgal</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Govind Vasantha - From "Pon Magal Vandhal"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/rani teni.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Rani Theni</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Haricharan - (From "Kavalthurai Ungal Nanban")</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kadhal thevey.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kaadhal Theevey</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sean Roldan - From "Dharala Prabhu"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Ninaivo Oru Paravi - Kanavula Usura.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kanavula Usura</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Swetha Mohan - Ninaivo Oru Paravai</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/nambiye.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Nanbiye</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Teddy</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/alalilolai.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Aalilalilo</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Chinmayi - (From "Rocky")</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/vaa chellam.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Vaa Chellam</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Govind Vasantha - From "Pon Magal Vandhal"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/maapila vanthan.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Mapila Vandha</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Mukesh - (From "Rajavamsam")</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/ponnu kickah.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Ponnu Kickah Bottle Kickah</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Pranavam Sasi - (From "Last Peg")</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/naan sinam.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Naan Sinam Ariven</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">G Anthony - (From "Rocky")</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/rasaa mavan.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Rasa Mavan</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Madley Blues - From "Dharala Prabhu"</td>
+        </tr>
+      </table>
+    </div>
+    <br><br>
+</section>
+
+<!--Lasest Song List-->
+
+<!--Romantic Song List-->
+
+<section class="w3-center w3-animate-top" class="list" id="love_list">
+  <div class="love_list">
+    <nav onclick="home()">
+      <i class="fa fa-chevron-left" style="font-size:24px; color: whitesmoke;"></i>
+    </nav><br><br><br>
+      <table style="text-align:left; width: 105%; left: -2%; position: fixed;">
+        <tr>
+          <th>
+            <img src="img/Romantic banner.jpg" style="width: 100%;">
+          </th>
+        </tr>
+        <tr>
+          <th style="text-align: center;">
+            <button onclick="javascript: $.getScript('scripts/love_songs.js' , function (){ kmp_player() ; } );">Play Music <i class="fa fa-headphones" aria-hidden="true"></i></button>
+          </th>
+        </tr>
+      </table>
+  </div>    
+      <br><br>
+    <div>
+      <table style="text-align: left; margin-top: 58%;">
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Adithya Varma.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Yaen Ennai Pirindhaai</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sid Sriram - Adithya Varma</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kanave nee.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kanave Nee Naan</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sooraj Santhosh - Kannum Kannum Kollaiyadithaal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/marappathilai.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Marappadhilai Nenje-Additional Song</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Leon James - Oh My Kadavule</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/bigil.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Unakaga</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">A R Rahman - Bigil</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/veyyon.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Veyyon Silli</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">GV Prakash Kumar - Veyyon Silli</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kadaipoma.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kadhaippoma</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Leon James - Kadhaippoma-From "Oh My Kadavule"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Kadaram Kondan_600.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Thaarame Thaarame</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Ghibran - Kadaram Kondan</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Una nenachu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Unna Nenachu (From "Psycho (Tamil)")</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Ilaiyaraaja - Unna Nenachu-From "Psycho (Tamil)"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/ngk.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Anbae Peranbae</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sid Sriram - NGK</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/ennai vittu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Ennai Vittu</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Ranjith - Kannum Kannum Kollaiyadithaal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kannama una.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kannamma</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Ispade Rajavum Idhaya Raniyum</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/orasadha.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Orasaadha-Madras Gig</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Vivek Mervin - Orasaadha-Madras Gig</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Enai Noki Paayum Thota 1600.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Maruvaarthai</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sid Sriram - Enai Noki Paayum Thota</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/othaiyadi.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Othaiyadi Pathayila</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Kanaa</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/antha kanna.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Andha Kanna Paathaakaa</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Master</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kathale kathale.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kaathalae Kaathalae</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Govind Vasantha - 96</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/enadi maayavi nee.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Ennadi Maayavi Nee</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sid Sriram - VadaChennai</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/munbe vaa.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Munbe Vaa</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Naresh Iyer - Jillunu Oru Kadhal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Neeum naanu anbe.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Neeyum Naanum Anbe</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Jithin Raj - Imaikkaa Nodigal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/hi sonna.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Hi Sonna Pothum (From "Comali")</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Hiphop Tamizha - Hi Sonna Pothum-From "Comali"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kanne kanne.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kanne Kanne</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Kanne Kanne</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/gandhakannu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Gaandakannazhagi</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sudharshan Ashok - Sivappu Manjal Pachai</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/usure.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Usure</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Mugen Rao - Sathiyama (Single)</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/inayae.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Inayae</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sid Sriram - Thadam</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/haiyo.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Haiyo Haiyo</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Leon James - Oh My Kadavule</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/gaandu.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Gaandu Kannamma</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Vivek Mervin - Gaandu Kannamma</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/kadhal thevey.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Kaadhal Theevey</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sean Roldan - From "Dharala Prabhu"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/dhom.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Dhom Dhom</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Hiphop Tamizha - Naan Sirithal</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/mazhi kuruvi.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Mazhai Kuruvi</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">A R Rahman - Chekka Chivantha Vaanam</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/Mr. Local.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Takkunu Takkunu</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Anirudh Ravichander - Mr. Local</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/sandakaari.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Sandakari Neethan (From "Sangathamizhan")</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Vivek Mervin - From "Sangathamizhan"</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/high.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">High On Love</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Sid Sriram - Pyaar Prema Kaadhal</td>
+        </tr>
+
+      </table>
+    </div>
+    <br><br>
+</section>
+
+<!--Romantic Song List-->
+
+<!--Devo Song List-->
+
+<section class="w3-center w3-animate-top" class="list" id="devo_list">
+  <div class="devo_list">
+    <nav onclick="home()">
+      <i class="fa fa-chevron-left" style="font-size:24px; color: whitesmoke;"></i>
+    </nav><br><br><br>
+      <table style="text-align:left; width: 105%; left: -2%; position: fixed;">
+        <tr>
+          <th>
+            <img src="img/Devo Banner.jpg" style="width: 100%;">
+          </th>
+        </tr>
+        <tr>
+          <th style="text-align: center;">
+            <button onclick="javascript: $.getScript('scripts/devo_songs.js' , function (){ kmp_player() ; } );">Play Music <i class="fa fa-headphones" aria-hidden="true"></i></button>
+          </th>
+        </tr>
+      </table>
+  </div>    
+      <br><br>
+    <div>
+      <table style="text-align: left; margin-top: 58%;">
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Unnai Ninaithale Mukthi</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Unnai Ninaithale Mukthi - Lord Shiva Devotional Song</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">lingashtakam Powerful Chants</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">SPB - லிங்காஷ்டகம் Powerful Chants of Lord Shiva</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Om Shiva Hom - Naan Kadavul</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Om Shiva Hom - From Naan Kadavul</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Shiva Thandavam lyric</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Shiva Thandavam lyric Song</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Shiv Tandaw New</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Shiv Tandaw New (2020)</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Lord Shiva Ever</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">MOST POPULAR SONG OF LORD SHIVA EVER</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Om Shivaya Part-2</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">நமசிவாய நமசிவாய ஓம்நமசிவாய</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Naduvan  Dr. Burn</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Naduvan | Dr. Burn</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Lingashtakam - Shiva Roopa Darshan</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">SPB - Lingashtakam - Shiva Roopa Darshan</td>
+        </tr>
+
+        <tr>
+          <th style=" width: 20%;" rowspan="2"><center><img src="img/shiva.jpg" style="width: 60%; border-radius: 10px ;"></center></th>
+          <td style="vertical-align: bottom; color: whitesmoke; font-size: 110%;">Shiva Shiva Sankara</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; color: rgb(88, 88, 88); font-size: 80%;">Shiva Shiva Sankara..Harra Harra Sankara..</td>
+        </tr>
+      </table>
+    </div>
+    <br><br>
+</section>
+
+<!--Devo Song List-->
+      <br>
+      <footer class="footer">
+        <a onclick="document.getElementById('wel').scrollIntoView();" href="index.html" ><img src="img/home.png"></a>
+      </footer>
+</div>
+
+<div class="web-site"><img style="width: 100%; height: 100%;" src="img/web-site.jpg"></div>
+
+</body> 
+
+
+<script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+<script data-cfasync="false" type="text/javascript"
+  src="https://cdn.rawgit.com/dwyl/learn-to-send-email-via-google-script-html-no-server/master/form-submission-handler.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script data-cfasync="false" type="text/javascript"
+  src="scripts/form-submission-handler.js"></script>
+<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="src/app.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.hislide.js" ></script>
+<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+
+
+<script>
+  $('.slide').hiSlide();
+</script>
+<script src="scripts/main.js"></script>
+<script>
+        function openNav() {
+          document.getElementById("mySidepanel").style.width = "100%";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidepanel").style.width = "0";
+        }
+</script>
+<script>
+  function kmp_player() {
+  var z = document.getElementById("kmp");
+  var x = document.getElementById("mainpage");
+  var a = document.getElementById("latest_list");
+  var b = document.getElementById("love_list");
+  var c = document.getElementById("devo_list");
+  var y = document.getElementById("menubar")
+   z.style.display = "block";
+   a.style.display = "none";
+   b.style.display = "none";
+   x.style.display = "none";
+   y.style.display = "block";
+   c.style.display = "none";
+}
+</script>
+
+<script>
+  function l_list() {
+  var a = document.getElementById("latest_list");
+  var b = document.getElementById("love_list");
+  var c = document.getElementById("devo_list");
+  var x = document.getElementById("mainpage");
+  var y = document.getElementById("menubar");
+  var z = document.getElementById("kmp");
+   a.style.display = "block";
+   x.style.display = "none"
+   y.style.display = "none"
+   z.style.display = "none"
+   b.style.display = "none";
+   c.style.display = "none";
+}
+</script>
+
+<script>
+  function r_list() {
+  var a = document.getElementById("latest_list");
+  var b = document.getElementById("love_list");
+  var c = document.getElementById("devo_list");
+  var x = document.getElementById("mainpage");
+  var y = document.getElementById("menubar");
+  var z = document.getElementById("kmp");
+   a.style.display = "none";
+   x.style.display = "none"
+   y.style.display = "none"
+   z.style.display = "none"
+   b.style.display = "block";
+   c.style.display = "none";
+}
+</script>
+
+<script>
+  function d_list() {
+  var a = document.getElementById("latest_list");
+  var b = document.getElementById("love_list");
+  var c = document.getElementById("devo_list");
+  var x = document.getElementById("mainpage");
+  var y = document.getElementById("menubar");
+  var z = document.getElementById("kmp");
+   a.style.display = "none";
+   x.style.display = "none";
+   y.style.display = "none";
+   z.style.display = "none";
+   c.style.display = "block";
+   b.style.display = "none";
+}
+</script>
+
+<script>
+  function home() {
+  var a = document.getElementById("latest_list");
+  var b = document.getElementById("love_list");
+  var c = document.getElementById("devo_list");
+  var z = document.getElementById("kmp");
+  var x = document.getElementById("mainpage");
+  var y = document.getElementById("menubar");
+   x.style.display = "block";
+   y.style.display = "block"
+   z.style.display = "none"
+   a.style.display = "none";
+   b.style.display = "none";
+   c.style.display = "none";
+}
+</script>
+<script>
+  $("#slideshow > div:gt(0)").hide();
+
+setInterval(function() {
+  $('#slideshow > div:first')
+    .fadeOut(1000)
+    .next()
+    .fadeIn(1000)
+    .end()
+    .appendTo('#slideshow');
+}, 3000);
+</script>
+</body>
+</html>
